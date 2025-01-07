@@ -25,97 +25,81 @@
             <div class="flex h-14 items-center justify-between border-b px-4">
                 <a href="/" class="flex items-center gap-2 font-semibold">
                     <img src="assest/img/african logo.jpg" alt="" class="" />
-
+                     
                 </a>
-                <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar"
-                    aria-controls="default-sidebar" type="button"
-                    class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 cusor-pointer ">
+                <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 cusor-pointer ">
                     <span class="sr-only">Open sidebar</span>
-                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path clip-rule="evenodd" fill-rule="evenodd"
-                            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-                        </path>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                     </svg>
-                </button>
+                 </button>
             </div>
-
-
-            <aside id="default-sidebar"
-                class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 lg:hidden"
-                aria-label="Sidebar">
+       
+             
+            <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 lg:hidden" aria-label="Sidebar">
                 <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 ">
+
                     <nav class="space-y-1.5 p-4  lg:hidden">
-                        <a href="./index.html"
-                            class="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900">
+                        <a href="./index.html" class="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900">
                             <i class="ri-home-line"></i>
                             Dashboard
                         </a>
-                        <a href="./orders-list.html"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                        <a href="./orders-list.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                             <i class="ri-shopping-bag-line"></i>
                             Orders
                         </a>
                         <div class="relative">
-                            <button
-                                class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900"
-                                onclick="toggleDropdown()">
+
+                            <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900" onclick="toggleDropdown()">
                                 <i class="ri-gift-line"></i>
                                 Products
-                                <i class="ri-arrow-down-s-line ml-auto transition-transform duration-200"
-                                    id="dropdownArrow"></i>
+                                <i class="ri-arrow-down-s-line ml-auto transition-transform duration-200" id="dropdownArrow"></i>
                             </button>
+
                             <div class="hidden space-y-1.5 pl-8" id="productsDropdown">
-                                <a href="./product-list.html"
-                                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                                <a href="./product-list.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                                     Product List
                                 </a>
-                                <a href="./add-product.html"
-                                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                                <a href="./add-product.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                                     Add Product
                                 </a>
                             </div>
                         </div>
-
-                        <a href="#"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                     
+                        <a href="#" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                             <i class="ri-settings-line"></i>
                             Settings
                         </a>
                     </nav>
+
                 </div>
-            </aside>
-            <nav class="space-y-1.5 p-4  hidden lg:block">
+             </aside>
+             
+             <nav class="space-y-1.5 p-4  hidden lg:block">
                 <a href="./index.html" class="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900">
                     <i class="ri-home-line"></i>
                     Dashboard
                 </a>
-                <a href="./orders-list.html"
-                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                <a href="./orders-list.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                     <i class="ri-shopping-bag-line"></i>
                     Orders
                 </a>
                 <div class="relative">
-                    <button
-                        class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900"
-                        onclick="toggleDropdown()">
+                    <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900" onclick="toggleDropdown2()">
                         <i class="ri-gift-line"></i>
                         Products
-                        <i class="ri-arrow-down-s-line ml-auto transition-transform duration-200"
-                            id="dropdownArrow"></i>
+                        <i class="ri-arrow-down-s-line ml-auto transition-transform duration-200" id="dropdownArrow2"></i>
                     </button>
-                    <div class="hidden space-y-1.5 pl-8" id="productsDropdown">
-                        <a href="./product-list.html"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                    <div class="hidden space-y-1.5 pl-8" id="productsDropdown2">
+                        <a href="./product-list.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                             Product List
                         </a>
-                        <a href="./add-product.html"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
+                        <a href="./add-product.html" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                             Add Product
                         </a>
                     </div>
                 </div>
-
+             
                 <a href="#" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900">
                     <i class="ri-settings-line"></i>
                     Settings
@@ -144,7 +128,7 @@
             </button>
             </header>
 
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 p-2">
                 <div class="p-2">
                     <h1 class="text-2xl font-semibold">Add New Product</h1>
                     <p class="text-sm text-gray-500">Add a new product to your store</p>
@@ -349,8 +333,16 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script>
         function toggleDropdown() {
+            console.log("Reacched")
             const dropdown = document.getElementById('productsDropdown');
             const arrow = document.getElementById('dropdownArrow');
+            dropdown.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+        function toggleDropdown2() {
+            console.log("Reacched")
+            const dropdown = document.getElementById('productsDropdown2');
+            const arrow = document.getElementById('dropdownArrow2');
             dropdown.classList.toggle('hidden');
             arrow.classList.toggle('rotate-180');
         }
