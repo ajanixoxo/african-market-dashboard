@@ -331,109 +331,179 @@
                     <!-- Category -->
                     <div class="bg-white rounded-lg shadow-sm p-6 max-w-md mx-auto">
                         <h2 class="text-lg font-medium mb-6">Product Categories</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">
-                                    Added Categories
-                                </label>
-                                <ul id="addedCategories" class="bg-gray-50 rounded-md p-2 min-h-[50px] border"></ul>
-                            </div>
-                            <div class="relative">
-                                <button id="addCategoryBtn"
-                                    class="w-full px-4 py-2 border rounded-md bg-green-500 text-white hover:bg-green-600 transition-colors">
-                                    Add Category
-                                </button>
-                                <div id="categoryDropdown"
-                                    class="hidden absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg">
-                                    <div class="p-2">
-                                        <select id="categorySelect" class="w-full px-3 py-2 border rounded-md mb-2">
-                                            <option value="">Select existing category</option>
-                                            <option>Fruits</option>
-                                            <option>Vegetables</option>
-                                            <option>Grains</option>
-                                            <option>Dairy Products</option>
-                                            <option>Meat & Poultry</option>
-                                            <option>Beverages</option>
-                                            <option>Snacks</option>
-                                        </select>
-                                        <input type="text" id="newCategoryInput" placeholder="Or enter new category"
-                                            class="w-full px-3 py-2 border rounded-md mb-2">
-                                        <button id="confirmAddCategory"
-                                            class="w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700 transition-colors">
-                                            Add
-                                        </button>
+
+                        <!-- Display Selected Categories -->
+                        <div id="selectedCategories" class="flex flex-wrap gap-2 mb-2"></div>
+
+                        <!-- Category Selection Dropdown -->
+                        <div class="relative">
+                            <button id="toggleDropdownBtn"
+                                class="w-full px-4 py-3 text-left text-gray-600 bg-white border rounded-lg shadow-sm flex items-center justify-between hover:border-purple-500 focus:outline-none focus:border-purple-500">
+                                <span class="text-gray-400">Select product category</span>
+                                <span id="dropdownIcon" class="text-gray-400">&#9660;</span> <!-- Chevron Icon -->
+                            </button>
+
+                            <!-- Dropdown Content -->
+                            <div id="categoryDropdown"
+                                class="hidden absolute w-full mt-2 bg-white border rounded-lg shadow-lg z-10">
+                                <div class="p-2 border-b">
+                                    <div class="relative">
+                                        <input type="text" id="searchInput" placeholder="Search for categories"
+                                            class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-purple-500">
                                     </div>
                                 </div>
+
+                                <!-- Categories List -->
+                                <div id="categoryList" class="max-h-60 overflow-y-auto"></div>
+
+                                <!-- Add New Category Button -->
+                                <button id="openCreateModalBtn"
+                                    class="w-full p-3 text-purple-600 hover:bg-purple-50 flex items-center justify-center gap-2 border-t">
+                                    <span class="text-purple-600">+ Create new category</span>
+                                </button>
                             </div>
+                        </div>
+                    
+                        <div class="flex gap-2 mt-3">
+                          
+                            <button class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800">
+                                Add Product
+                            </button>
                         </div>
                     </div>
 
+                    <!-- Modal for Creating New Category -->
+                    <div id="createCategoryModal"
+                        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20 hidden">
+                        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+                            <h3 class="text-lg font-semibold mb-4">Create New Category</h3>
+                            <form id="createCategoryForm">
+                                <input type="text" id="newCategoryInput" placeholder="Category name"
+                                    class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:border-purple-500">
+                                <div class="flex justify-end gap-2">
+                                    <button type="button" id="cancelCreateCategoryBtn"
+                                        class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                        class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                                        Create
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-        </main>
+
+            </div>
+    </div>
+
+    </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-            const addCategoryBtn = document.getElementById('addCategoryBtn');
-            const categoryDropdown = document.getElementById('categoryDropdown');
-            const categorySelect = document.getElementById('categorySelect');
-            const newCategoryInput = document.getElementById('newCategoryInput');
-            const confirmAddCategory = document.getElementById('confirmAddCategory');
-            const addedCategoriesList = document.getElementById('addedCategories');
+        const categories = [
+            { id: '1', name: 'Microphone' },
+            { id: '2', name: 'Microphone Pro' },
+            { id: '3', name: 'Audio Equipment' },
+        ];
+        const selectedCategories = [];
 
-            addCategoryBtn.addEventListener('click', function() {
-                categoryDropdown.classList.toggle('hidden');
-            });
+        const categoryDropdown = document.getElementById('categoryDropdown');
+        const toggleDropdownBtn = document.getElementById('toggleDropdownBtn');
+        const searchInput = document.getElementById('searchInput');
+        const categoryList = document.getElementById('categoryList');
+        const selectedCategoriesDiv = document.getElementById('selectedCategories');
+        const openCreateModalBtn = document.getElementById('openCreateModalBtn');
+        const createCategoryModal = document.getElementById('createCategoryModal');
+        const createCategoryForm = document.getElementById('createCategoryForm');
+        const newCategoryInput = document.getElementById('newCategoryInput');
+        const cancelCreateCategoryBtn = document.getElementById('cancelCreateCategoryBtn');
 
-            confirmAddCategory.addEventListener('click', function() {
-                let categoryToAdd = categorySelect.value;
-                if (!categoryToAdd) {
-                    categoryToAdd = newCategoryInput.value.trim();
-                }
-
-                if (categoryToAdd) {
-                    addCategory(categoryToAdd);
-                    categoryDropdown.classList.add('hidden');
-                    categorySelect.value = '';
-                    newCategoryInput.value = '';
-                }
-            });
-
-            function addCategory(category) {
-                if (!categoryExists(category)) {
-                    const li = document.createElement('li');
-                    li.className = 'bg-blue-100 text-blue-800 rounded px-2 py-1 mb-1 flex justify-between items-center';
-                    li.innerHTML = `
-                        <span>${category}</span>
-                        <button class="text-red-500 hover:text-red-700" onclick="removeCategory(this)">×</button>
-                    `;
-                    addedCategoriesList.appendChild(li);
-
-                    // Add to select if it's a new category
-                    if (!categoryExistsInSelect(category)) {
-                        const option = new Option(category, category);
-                        categorySelect.add(option);
-                    }
-                }
-            }
-
-            function categoryExists(category) {
-                return Array.from(addedCategoriesList.children).some(li => li.textContent.includes(category));
-            }
-
-            function categoryExistsInSelect(category) {
-                return Array.from(categorySelect.options).some(option => option.text === category);
-            }
-
-            window.removeCategory = function(button) {
-                button.parentElement.remove();
-            };
+        // Toggle dropdown visibility
+        toggleDropdownBtn.addEventListener('click', () => {
+            categoryDropdown.classList.toggle('hidden');
+            document.getElementById('dropdownIcon').textContent = categoryDropdown.classList.contains('hidden') ? '▼' : '▲';
         });
-    
-    
+
+        // Filter categories based on search input
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchTerm));
+            renderCategoryList(filteredCategories);
+        });
+
+        // Render category list
+        function renderCategoryList(filteredCategories) {
+            categoryList.innerHTML = '';
+            filteredCategories.forEach(category => {
+                const categoryBtn = document.createElement('button');
+                categoryBtn.className = 'w-full px-4 py-2 text-left hover:bg-purple-50 flex items-center justify-between';
+                categoryBtn.textContent = category.name;
+                categoryBtn.addEventListener('click', () => toggleCategorySelection(category));
+                categoryList.appendChild(categoryBtn);
+            });
+        }
+
+        // Toggle category selection
+        function toggleCategorySelection(category) {
+            const index = selectedCategories.findIndex(selectedCategory => selectedCategory.id === category.id);
+            if (index !== -1) {
+                selectedCategories.splice(index, 1); // Deselect
+            } else {
+                selectedCategories.push(category); // Select
+            }
+            renderSelectedCategories();
+        }
+
+        // Render selected categories
+        function renderSelectedCategories() {
+            selectedCategoriesDiv.innerHTML = '';
+            selectedCategories.forEach(category => {
+                const categoryTag = document.createElement('span');
+                categoryTag.className = 'inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm';
+                categoryTag.textContent = category.name;
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '×';
+                removeBtn.className = 'hover:text-purple-950';
+                removeBtn.addEventListener('click', () => toggleCategorySelection(category));
+                categoryTag.appendChild(removeBtn);
+                selectedCategoriesDiv.appendChild(categoryTag);
+            });
+        }
+
+        // Open modal for creating new category
+        openCreateModalBtn.addEventListener('click', () => {
+            createCategoryModal.classList.remove('hidden');
+        });
+
+        // Cancel creating new category
+        cancelCreateCategoryBtn.addEventListener('click', () => {
+            createCategoryModal.classList.add('hidden');
+        });
+
+        // Create new category
+        createCategoryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newCategoryName = newCategoryInput.value.trim();
+            if (newCategoryName) {
+                const newCategory = { id: Date.now().toString(), name: newCategoryName };
+                categories.push(newCategory);
+                renderCategoryList(categories); // Re-render the category list
+                selectedCategories.push(newCategory); // Auto-select new category
+                renderSelectedCategories();
+                newCategoryInput.value = '';
+                createCategoryModal.classList.add('hidden');
+            }
+        });
+
+        // Initial render of categories
+        renderCategoryList(categories);
+
+
+
         function toggleDropdown() {
             console.log("Reacched")
             const dropdown = document.getElementById('productsDropdown');
