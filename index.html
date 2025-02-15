@@ -259,7 +259,7 @@
 
         function createFoodItemElement() {
             const itemDiv = document.createElement('div');
-            itemDiv.className = ' items-center space-x-2 mb-2';
+            itemDiv.className = 'flex flex-col items-center space-y-2 mb-2';
             itemDiv.innerHTML = `
                 <select class="food-item shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     ${foodItems.map(item => `<option value="${item}">${item}</option>`).join('')}
