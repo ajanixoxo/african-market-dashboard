@@ -262,7 +262,7 @@
             itemDiv.className = 'flex flex-col gap-2 items-center space-y-2 mb-2';
             itemDiv.innerHTML = `
                 <select class="food-item shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight w-full focus:outline-none focus:shadow-outline">
-                    ${foodItems.map(item => `<option value="${item}">${item}</option>`).join('')}
+                    ${foodItems.map(item => `<option value="${item}" class="w-full" >${item}</option>`).join('')}
                 </select>
                 <input type="number" class="quantity shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Quantity" min="1" value="1">
                 <input type="number" class="price shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Price" step="0.01" min="0">
